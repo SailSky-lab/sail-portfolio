@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sail — Educator &amp; Innovator</title>
+<meta name="description" content="Sail is a CTE, AI, French, and Drafting educator and builder of tools that empower teachers and students.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ── TOKENS ── */
+:root {
+  --ink:        #0F1923;
+  --cream:      #F7F3EC;
+  --cream-dark: #EFE9DF;
+  --gold:       #D4A853;
+  --gold-light: #EDD38A;
+  --teal:       #1B6B6B;
+  --teal-light: #2A9090;
+  --teal-pale:  #EAF4F4;
+  --rust:       #C45C3A;
+  --mist:       #EAF0F0;
+  --serif:  'Playfair Display', Georgia, serif;
+  --sans:   'DM Sans', sans-serif;
+  --radius: 1rem;
+  --shadow-sm: 0 2px 12px rgba(15,25,35,0.07);
+  --shadow-md: 0 8px 32px rgba(15,25,35,0.10);
+  --shadow-lg: 0 24px 64px rgba(15,25,35,0.15);
+  --trans:  0.22s cubic-bezier(0.4,0,0.2,1);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--sans);
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+
+/* ── SCROLL REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s var(--trans), transform 0.7s var(--trans);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.1rem 4rem;
+  background: rgba(247,243,236,0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(212,168,83,0.18);
+  transition: box-shadow var(--trans), background var(--trans);
+}
+nav.scrolled {
+  box-shadow: 0 2px 20px rgba(15,25,35,0.08);
+  background: rgba(247,243,236,0.98);
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--teal);
+  letter-spacing: -0.01em;
+}
+.nav-logo span { color: var(--gold); }
+.nav-links {
+  display: flex; align-items: center; gap: 2rem;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ink);
+  opacity: 0.75;
+  transition: opacity var(--trans), color var(--trans);
+}
+.nav-links a:hover { opacity: 1; color: var(--teal); }
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.55rem 1.2rem;
+  background: var(--teal);
+  color: #fff !important;
+  opacity: 1 !important;
+  border-radius: 2rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: background var(--trans), transform var(--trans);
+}
+.nav-cta:hover { background: var(--teal-light); transform: translateY(-1px); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 7rem 4rem 5rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 80% 50%, rgba(27,107,107,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 10% 80%, rgba(212,168,83,0.09) 0%, transparent 60%);
+}
+.hero-inner {
+  position: relative; z-index: 1;
+  max-width: 1200px; margin: 0 auto; width: 100%;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: center;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.4rem 1rem;
+  background: rgba(212,168,83,0.14);
+  border: 1px solid rgba(212,168,83,0.35);
+  border-radius: 2rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #8B6914;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.hero-eyebrow span { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  line-height: 1.1;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--teal);
+}
+.hero-sub {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  color: rgba(15,25,35,0.68);
+  max-width: 480px;
+  margin-bottom: 2.5rem;
+}
+.hero-pills {
+  display: flex; flex-wrap: wrap; gap: 0.6rem;
+  margin-bottom: 2.5rem;
+}
+.pill {
+  padding: 0.35rem 0.9rem;
+  border-radius: 2rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: 1.5px solid;
+}
+.pill-teal   { color: var(--teal);  border-color: rgba(27,107,107,0.4);  background: rgba(27,107,107,0.06); }
+.pill-gold   { color: #8B6914;       border-color: rgba(212,168,83,0.45); background: rgba(212,168,83,0.1);  }
+.pill-rust   { color: var(--rust);  border-color: rgba(196,92,58,0.35);  background: rgba(196,92,58,0.07);  }
+.pill-ink    { color: var(--ink);   border-color: rgba(15,25,35,0.3);    background: rgba(15,25,35,0.05);   }
+
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.85rem 1.9rem;
+  background: var(--teal);
+  color: #fff;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background var(--trans), transform var(--trans), box-shadow var(--trans);
+  box-shadow: 0 4px 16px rgba(27,107,107,0.25);
+}
+.btn-primary:hover { background: var(--teal-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(27,107,107,0.3); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.85rem 1.9rem;
+  background: transparent;
+  color: var(--ink);
+  border: 2px solid rgba(15,25,35,0.2);
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: border-color var(--trans), background var(--trans), transform var(--trans);
+}
+.btn-secondary:hover { border-color: var(--teal); color: var(--teal); background: rgba(27,107,107,0.04); transform: translateY(-2px); }
+
+/* Hero visual */
+.hero-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+.avatar-wrap {
+  width: 260px; height: 260px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, var(--teal-pale), var(--mist));
+  border: 4px solid rgba(212,168,83,0.45);
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  box-shadow: var(--shadow-lg);
+}
+.avatar-initials {
+  font-family: var(--serif);
+  font-size: 5rem;
+  font-weight: 900;
+  color: var(--teal);
+  letter-spacing: -0.04em;
+}
+.avatar-badge {
+  position: absolute; bottom: 12px; right: 12px;
+  background: var(--gold);
+  color: #fff;
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  box-shadow: var(--shadow-sm);
+  border: 3px solid var(--cream);
+}
+.hero-stats {
+  display: flex; gap: 2rem;
+}
+.stat {
+  text-align: center;
+}
+.stat-num {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--teal);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.75rem;
+  color: rgba(15,25,35,0.55);
+  font-weight: 500;
+  margin-top: 0.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ── SECTION BASE ── */
+section { padding: 6rem 4rem; }
+.section-inner { max-width: 1200px; margin: 0 auto; }
+.section-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  line-height: 1.15;
+  color: var(--ink);
+  margin-bottom: 1.25rem;
+}
+.section-sub {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: rgba(15,25,35,0.65);
+  max-width: 540px;
+}
+
+/* ── ABOUT ── */
+.about { background: var(--cream-dark); }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 5rem;
+  align-items: center;
+}
+.about-values {
+  display: flex; flex-direction: column; gap: 1.25rem;
+  margin-top: 2rem;
+}
+.value-item {
+  display: flex; gap: 1rem; align-items: flex-start;
+}
+.value-icon {
+  width: 40px; height: 40px; flex-shrink: 0;
+  border-radius: 0.6rem;
+  background: var(--teal-pale);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  color: var(--teal);
+}
+.value-text h4 { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.2rem; }
+.value-text p { font-size: 0.88rem; color: rgba(15,25,35,0.6); line-height: 1.6; }
+
+.about-quote {
+  background: var(--cream);
+  border-left: 4px solid var(--gold);
+  padding: 1.5rem 1.75rem;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  margin-bottom: 2rem;
+}
+.about-quote blockquote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1.65;
+  color: var(--ink);
+}
+.about-quote cite {
+  display: block;
+  margin-top: 0.75rem;
+  font-style: normal;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(15,25,35,0.5);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.about-bio {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: rgba(15,25,35,0.72);
+}
+.about-bio p + p { margin-top: 1rem; }
+
+/* ── TEACHING ── */
+.teaching-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3.5rem;
+}
+.subject-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 2rem 1.75rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(15,25,35,0.07);
+  transition: transform var(--trans), box-shadow var(--trans);
+  cursor: default;
+}
+.subject-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+.subject-icon {
+  width: 56px; height: 56px;
+  border-radius: 0.9rem;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem;
+  margin-bottom: 1.25rem;
+}
+.icon-teal  { background: var(--teal-pale); }
+.icon-gold  { background: rgba(212,168,83,0.12); }
+.icon-rust  { background: rgba(196,92,58,0.1); }
+.icon-ink   { background: rgba(15,25,35,0.06); }
+.subject-card h3 {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  margin-bottom: 0.6rem;
+  color: var(--ink);
+}
+.subject-card p {
+  font-size: 0.87rem;
+  line-height: 1.7;
+  color: rgba(15,25,35,0.62);
+}
+.subject-tags {
+  display: flex; flex-wrap: wrap; gap: 0.4rem;
+  margin-top: 1.1rem;
+}
+.subject-tag {
+  padding: 0.2rem 0.65rem;
+  background: var(--cream);
+  border-radius: 2rem;
+  font-size: 0.73rem;
+  font-weight: 600;
+  color: rgba(15,25,35,0.55);
+}
+
+/* ── PROJECTS ── */
+.projects { background: var(--ink); color: #fff; }
+.projects .section-title { color: #fff; }
+.projects .section-tag { color: var(--gold); }
+.projects .section-sub { color: rgba(255,255,255,0.6); }
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 2rem;
+  margin-top: 3.5rem;
+}
+.project-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius);
+  padding: 2.5rem;
+  transition: background var(--trans), transform var(--trans), border-color var(--trans);
+  position: relative;
+  overflow: hidden;
+}
+.project-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+.project-card.accent-teal::before { background: linear-gradient(90deg, var(--teal), var(--teal-light)); }
+.project-card.accent-gold::before { background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
+.project-card.accent-rust::before { background: linear-gradient(90deg, var(--rust), #D97A56); }
+.project-card.accent-slate::before { background: linear-gradient(90deg, #3D6FA8, #6FA3C9); }
+.project-card.accent-plum::before { background: linear-gradient(90deg, #8E5BA8, #B389C9); }
+.project-card:hover {
+  background: rgba(255,255,255,0.09);
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.18);
+}
+.project-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 1rem;
+}
+.project-card h3 {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  margin-bottom: 0.9rem;
+  color: #fff;
+}
+.project-card p {
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 2rem;
+}
+.project-feature-list {
+  display: flex; flex-direction: column; gap: 0.55rem;
+  margin-bottom: 2rem;
+}
+.project-feature {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.72);
+}
+.project-feature::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.accent-teal .project-feature::before { background: var(--teal-light); }
+.accent-gold .project-feature::before { background: var(--gold); }
+.accent-rust .project-feature::before { background: #D97A56; }
+.accent-slate .project-feature::before { background: #6FA3C9; }
+.accent-plum .project-feature::before { background: #B389C9; }
+.project-link {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.6rem 1.3rem;
+  border-radius: 0.6rem;
+  transition: background var(--trans), transform var(--trans);
+}
+.link-teal { background: rgba(27,107,107,0.25); color: #7ECECE; }
+.link-teal:hover { background: rgba(27,107,107,0.4); transform: translateX(2px); }
+.link-gold { background: rgba(212,168,83,0.2); color: var(--gold-light); }
+.link-gold:hover { background: rgba(212,168,83,0.35); transform: translateX(2px); }
+.link-rust { background: rgba(217,122,86,0.22); color: #F0A98A; }
+.link-rust:hover { background: rgba(217,122,86,0.38); transform: translateX(2px); }
+.link-slate { background: rgba(111,163,201,0.22); color: #A7CBE6; }
+.link-slate:hover { background: rgba(111,163,201,0.38); transform: translateX(2px); }
+.link-plum { background: rgba(179,137,201,0.22); color: #D4B3E6; }
+.link-plum:hover { background: rgba(179,137,201,0.38); transform: translateX(2px); }
+
+/* ── EXPERTISE ── */
+.expertise-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  margin-top: 3.5rem;
+  align-items: start;
+}
+.skill-group { margin-bottom: 2rem; }
+.skill-group-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(15,25,35,0.45);
+  margin-bottom: 1rem;
+}
+.skill-bars { display: flex; flex-direction: column; gap: 0.85rem; }
+.skill-item {}
+.skill-label {
+  display: flex; justify-content: space-between;
+  font-size: 0.88rem;
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+}
+.skill-label span:last-child { color: rgba(15,25,35,0.45); font-size: 0.8rem; }
+.skill-bar {
+  height: 6px;
+  background: rgba(15,25,35,0.08);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.skill-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--teal), var(--teal-light));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1s cubic-bezier(0.4,0,0.2,1);
+}
+.skill-fill.gold { background: linear-gradient(90deg, #C89030, var(--gold-light)); }
+.skill-fill.animated { transform: scaleX(1); }
+
+.cert-list {
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.cert-item {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: #fff;
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(15,25,35,0.06);
+}
+.cert-icon {
+  width: 42px; height: 42px; flex-shrink: 0;
+  border-radius: 0.6rem;
+  background: var(--teal-pale);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+}
+.cert-text h5 { font-size: 0.9rem; font-weight: 600; }
+.cert-text p  { font-size: 0.78rem; color: rgba(15,25,35,0.5); }
+
+/* ── CONTACT ── */
+.contact { background: var(--cream-dark); }
+.contact-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+.contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+.contact-item {
+  display: flex; gap: 1.1rem; align-items: flex-start;
+}
+.contact-item-icon {
+  width: 46px; height: 46px; flex-shrink: 0;
+  border-radius: 0.75rem;
+  background: rgba(27,107,107,0.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+  color: var(--teal);
+}
+.contact-item h4 { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: rgba(15,25,35,0.45); margin-bottom: 0.2rem; }
+.contact-item p  { font-size: 0.95rem; font-weight: 500; }
+.contact-item a  { color: var(--teal); transition: color var(--trans); }
+.contact-item a:hover { color: var(--teal-light); }
+
+.contact-form {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-md);
+}
+.contact-form h3 {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.form-group { margin-bottom: 1.25rem; }
+.form-group label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-bottom: 0.45rem;
+  color: rgba(15,25,35,0.7);
+}
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid rgba(15,25,35,0.14);
+  border-radius: 0.6rem;
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  color: var(--ink);
+  background: var(--cream);
+  transition: border-color var(--trans), box-shadow var(--trans);
+  outline: none;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(27,107,107,0.1);
+}
+.form-group textarea { height: 110px; resize: vertical; }
+.form-submit {
+  width: 100%;
+  padding: 0.9rem;
+  background: var(--teal);
+  color: #fff;
+  border: none;
+  border-radius: 0.6rem;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--trans), transform var(--trans);
+}
+.form-submit:hover { background: var(--teal-light); transform: translateY(-1px); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--ink);
+  color: rgba(255,255,255,0.55);
+  padding: 2.5rem 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer-logo {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+}
+.footer-logo span { color: var(--gold); }
+footer p { font-size: 0.82rem; }
+.footer-links { display: flex; gap: 1.5rem; }
+.footer-links a {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.45);
+  transition: color var(--trans);
+}
+.footer-links a:hover { color: #fff; }
+
+/* ── HAMBURGER (mobile nav) ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px; height: 2px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: var(--trans);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  nav { padding: 1rem 2rem; }
+  .hero { padding: 7rem 2rem 4rem; }
+  .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .hero-visual { flex-direction: row; justify-content: center; }
+  section { padding: 5rem 2rem; }
+  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .expertise-wrap { grid-template-columns: 1fr; gap: 3rem; }
+  .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+  footer { flex-direction: column; gap: 1.25rem; text-align: center; padding: 2rem; }
+  .footer-links { flex-wrap: wrap; justify-content: center; }
+}
+@media (max-width: 640px) {
+  nav { padding: 1rem 1.25rem; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .hero h1 { font-size: 2.4rem; }
+  .hero-visual { flex-direction: column; }
+  .avatar-wrap { width: 200px; height: 200px; }
+  .hero-stats { gap: 1.25rem; }
+  section { padding: 4rem 1.25rem; }
+  .teaching-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ── NAV ── -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Sail <span>•</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#teaching">Teaching</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://aireadyeducator.com" target="_blank" rel="noopener" class="nav-cta">AI-Ready Educator ↗</a></li>
+  </ul>
+  <div class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+
+    <div class="hero-content">
+      <div class="hero-eyebrow reveal"><span></span> Educator &amp; Innovator</div>
+      <h1 class="reveal reveal-delay-1">
+        Teaching with<br><em>Purpose.</em><br>Building with <em>Passion.</em>
+      </h1>
+      <p class="hero-sub reveal reveal-delay-2">
+        I bring the classroom to life across Cisco Networking, French, Drafting, and AI — and I build tools that empower teachers and students to thrive.
+      </p>
+      <div class="hero-pills reveal reveal-delay-3">
+        <span class="pill pill-teal">🌐 Cisco Networking</span>
+        <span class="pill pill-gold">🇫🇷 French</span>
+        <span class="pill pill-rust">📐 Drafting</span>
+        <span class="pill pill-ink">🤖 AI &amp; EdTech</span>
+      </div>
+      <div class="hero-actions reveal reveal-delay-4">
+        <a href="#projects" class="btn-primary">See My Work ↓</a>
+        <a href="#contact" class="btn-secondary">Get in Touch</a>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal reveal-delay-2">
+      <div class="avatar-wrap">
+        <span class="avatar-initials">F</span>
+        <div class="avatar-badge" title="AI-Ready Educator">🎓</div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">4</div>
+          <div class="stat-label">Subjects</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">7</div>
+          <div class="stat-label">Years Teaching</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Curiosity</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section class="about" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+
+      <div class="reveal">
+        <p class="section-tag">About Me</p>
+        <h2 class="section-title">Passionate about<br>learning that sticks.</h2>
+        <div class="about-quote">
+          <blockquote>"The best teachers don't just teach subjects — they teach students how to think, build, and believe in themselves."</blockquote>
+          <cite>— Sail</cite>
+        </div>
+        <div class="about-values">
+          <div class="value-item">
+            <div class="value-icon">🔗</div>
+            <div class="value-text">
+              <h4>Real-World Connections</h4>
+              <p>Every lesson ties back to what students will actually do in life and careers.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">🛠️</div>
+            <div class="value-text">
+              <h4>Builder Mindset</h4>
+              <p>I don't just teach tools — I build them, too. From AI tutors to educator communities.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">🌍</div>
+            <div class="value-text">
+              <h4>Equity-Centered</h4>
+              <p>Every student deserves access to engaging, personalized learning — regardless of background.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-2">
+        <div class="about-bio">
+          <p>I'm Sail, a CTE educator and tech enthusiast teaching Cisco Networking, French, Drafting, and Artificial Intelligence. My classrooms are hands-on, project-based, and deeply connected to the real world.</p>
+          <p>Beyond teaching, I design educational technology that closes the gap between what students need and what schools can provide. I founded <strong>AI-Ready Educator</strong> to help fellow teachers cut through the hype and actually use AI to save time and improve outcomes.</p>
+          <p>My most ambitious project, <strong>WildCatalyze AI</strong>, is an adaptive tutoring system that gives every math student a personalized learning path — built with the same care I bring to every classroom.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── TEACHING ── -->
+<section id="teaching">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-tag">What I Teach</p>
+      <h2 class="section-title">Four subjects.<br>One philosophy.</h2>
+      <p class="section-sub">Whether it's configuring routers or conjugating verbs, I bring the same energy: make it real, make it meaningful, make it memorable.</p>
+    </div>
+    <div class="teaching-grid">
+
+      <div class="subject-card reveal reveal-delay-1">
+        <div class="subject-icon icon-teal">🌐</div>
+        <h3>Cisco Networking</h3>
+        <p>Hands-on CTE instruction covering network fundamentals, routing protocols, and real-world infrastructure. Students leave ready for industry certifications and careers.</p>
+        <div class="subject-tags">
+          <span class="subject-tag">CCNA Prep</span>
+          <span class="subject-tag">CTE</span>
+          <span class="subject-tag">Packet Tracer</span>
+          <span class="subject-tag">Lab Work</span>
+        </div>
+      </div>
+
+      <div class="subject-card reveal reveal-delay-2">
+        <div class="subject-icon icon-gold">🇫🇷</div>
+        <h3>French Language</h3>
+        <p>Communicative, culturally rich French instruction. From beginner to advanced, students develop real conversational fluency and cultural appreciation.</p>
+        <div class="subject-tags">
+          <span class="subject-tag">Conversational</span>
+          <span class="subject-tag">Cultural Immersion</span>
+          <span class="subject-tag">Grammar</span>
+          <span class="subject-tag">AP Ready</span>
+        </div>
+      </div>
+
+      <div class="subject-card reveal reveal-delay-3">
+        <div class="subject-icon icon-rust">📐</div>
+        <h3>Drafting &amp; Design</h3>
+        <p>Technical drawing and CAD fundamentals that bridge creativity and engineering. Students design, iterate, and present real solutions to real problems.</p>
+        <div class="subject-tags">
+          <span class="subject-tag">CAD</span>
+          <span class="subject-tag">Technical Drawing</span>
+          <span class="subject-tag">Design Thinking</span>
+          <span class="subject-tag">STEM</span>
+        </div>
+      </div>
+
+      <div class="subject-card reveal reveal-delay-4">
+        <div class="subject-icon icon-ink">🤖</div>
+        <h3>Artificial Intelligence</h3>
+        <p>Introducing students to AI concepts, ethics, and tools. Practical, grounded instruction that prepares learners for a world shaped by intelligent systems.</p>
+        <div class="subject-tags">
+          <span class="subject-tag">AI Literacy</span>
+          <span class="subject-tag">Ethics</span>
+          <span class="subject-tag">Prompt Engineering</span>
+          <span class="subject-tag">EdTech</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── PROJECTS ── -->
+<section class="projects" id="projects">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-tag">Featured Projects</p>
+      <h2 class="section-title">Built for the classroom.<br>Deployed for the world.</h2>
+      <p class="section-sub">I don't wait for better tools — I build them. Here's what I've shipped, from the classroom to the World Cup.</p>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card accent-teal reveal reveal-delay-1">
+        <div class="project-label">AI Tutoring Platform</div>
+        <h3>WildCatalyze AI</h3>
+        <p>An adaptive NC Math 1 tutoring system that personalizes learning paths, identifies student gaps, and generates targeted practice — powered by Claude AI.</p>
+        <div class="project-feature-list">
+          <div class="project-feature">Diagnostic quiz with 70-question bank across all standards</div>
+          <div class="project-feature">AI tutor personalized by learning style &amp; interests</div>
+          <div class="project-feature">Teacher dashboard with student gap analysis</div>
+          <div class="project-feature">Auto-generated practice worksheets per skill gap</div>
+        </div>
+        <a href="#contact" class="project-link link-teal">Request a Demo →</a>
+      </div>
+
+      <div class="project-card accent-gold reveal reveal-delay-2">
+        <div class="project-label">Educator Community</div>
+        <h3>AI-Ready Educator</h3>
+        <p>A $9/month community for real teachers who want to save 5+ hours a week using practical AI tools, ready-made prompts, and monthly mini-courses.</p>
+        <div class="project-feature-list">
+          <div class="project-feature">Ready-made AI prompts tested in real classrooms</div>
+          <div class="project-feature">Monthly mini-courses on practical AI integration</div>
+          <div class="project-feature">200+ member community of educators</div>
+          <div class="project-feature">Founding rate locked in — $9/month forever</div>
+        </div>
+        <a href="https://aireadyeducator.com" target="_blank" rel="noopener" class="project-link link-gold">Visit Community →</a>
+      </div>
+
+      <div class="project-card accent-rust reveal reveal-delay-3">
+        <div class="project-label">Dental Staffing Marketplace</div>
+        <h3>DentalHire NC</h3>
+        <p>A staffing marketplace connecting North Carolina dental practices with on-call hygienists and assistants for same-day and short-notice shifts.</p>
+        <div class="project-feature-list">
+          <div class="project-feature">Practices post open shifts in minutes</div>
+          <div class="project-feature">Worker profiles list software experience (Dentrix, Eaglesoft)</div>
+          <div class="project-feature">Stripe-powered payments, encrypted contact info at rest</div>
+          <div class="project-feature">Built specifically for NC's dental community</div>
+        </div>
+        <a href="dental-staffing.html" class="project-link link-rust">View Project →</a>
+      </div>
+
+      <div class="project-card accent-slate reveal reveal-delay-4">
+        <div class="project-label">Kiosk Hallway Pass System</div>
+        <h3>EasyHallwaysPass</h3>
+        <p>A privacy-first, kiosk-style hallway pass system built for whole-school use — no student data beyond a nickname is ever stored or displayed.</p>
+        <div class="project-feature-list">
+          <div class="project-feature">Password-only teacher accounts — no names or emails collected</div>
+          <div class="project-feature">Passes auto-flag as overdue after 10 minutes</div>
+          <div class="project-feature">Weekly caps on bathroom passes, one student out per class at a time</div>
+          <div class="project-feature">Deployed school-wide, admin oversight dashboard included</div>
+        </div>
+        <a href="https://easyhallwayspass.com" target="_blank" rel="noopener" class="project-link link-slate">Visit Site →</a>
+      </div>
+
+      <div class="project-card accent-plum reveal reveal-delay-1">
+        <div class="project-label">World Cup Fan App</div>
+        <h3>WC2026 Fan Navigator</h3>
+        <p>A multi-language companion app for 2026 FIFA World Cup fans, covering all 10 US host cities with guides, schedules, and a community forum.</p>
+        <div class="project-feature-list">
+          <div class="project-feature">Team following and full match schedule</div>
+          <div class="project-feature">City guides with hotels, restaurants, and fan zones</div>
+          <div class="project-feature">Anonymous fan forum with rate limiting and reporting</div>
+          <div class="project-feature">English, French, and Arabic support (with RTL)</div>
+        </div>
+        <a href="#contact" class="project-link link-plum">Ask About a Demo →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPERTISE ── -->
+<section id="expertise">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-tag">Skills &amp; Expertise</p>
+      <h2 class="section-title">Teaching skills meet<br>builder skills.</h2>
+    </div>
+    <div class="expertise-wrap">
+
+      <div class="reveal reveal-delay-1">
+        <div class="skill-group">
+          <div class="skill-group-title">Classroom &amp; Pedagogy</div>
+          <div class="skill-bars">
+            <div class="skill-item">
+              <div class="skill-label"><span>CTE &amp; Career-Ready Instruction</span><span>Expert</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--w:0.96"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>Project-Based Learning</span><span>Expert</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--w:0.94"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>Differentiated Instruction</span><span>Advanced</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--w:0.90"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>Curriculum Design</span><span>Advanced</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--w:0.88"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Technology &amp; Tools</div>
+          <div class="skill-bars">
+            <div class="skill-item">
+              <div class="skill-label"><span>Cisco Packet Tracer / CCNA</span><span>Expert</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--w:0.95"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>AI &amp; Prompt Engineering</span><span>Advanced</span></div>
+              <div class="skill-bar"><div class="skill-fill gold" style="--w:0.88"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>Web Development (React/Node)</span><span>Proficient</span></div>
+              <div class="skill-bar"><div class="skill-fill gold" style="--w:0.78"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>CAD &amp; Technical Drawing</span><span>Advanced</span></div>
+              <div class="skill-bar"><div class="skill-fill gold" style="--w:0.85"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-2">
+        <div class="skill-group-title" style="margin-bottom:1rem;">Certifications &amp; Recognition</div>
+        <div class="cert-list">
+          <div class="cert-item">
+            <div class="cert-icon">🏆</div>
+            <div class="cert-text">
+              <h5>NHCS Overall Educator of the Year</h5>
+              <p>2023–2024 · Luz Frye Honor Scholar</p>
+            </div>
+          </div>
+          <div class="cert-item">
+            <div class="cert-icon">🇫🇷</div>
+            <div class="cert-text">
+              <h5>NC AATF French Teacher of the Year</h5>
+              <p>North Carolina AATF</p>
+            </div>
+          </div>
+          <div class="cert-item">
+            <div class="cert-icon">🌐</div>
+            <div class="cert-text">
+              <h5>Cisco Certified Instructor</h5>
+              <p>Cisco Networking Academy</p>
+            </div>
+          </div>
+          <div class="cert-item">
+            <div class="cert-icon">🤖</div>
+            <div class="cert-text">
+              <h5>AI-Ready Educator Founder</h5>
+              <p>200+ member educator community</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section class="contact" id="contact">
+  <div class="section-inner">
+    <div class="reveal" style="margin-bottom:3.5rem;">
+      <p class="section-tag">Contact</p>
+      <h2 class="section-title">Let's connect.</h2>
+      <p class="section-sub">Whether you want to collaborate, learn more about my projects, or just say hello — I'd love to hear from you.</p>
+    </div>
+    <div class="contact-inner">
+
+      <div class="contact-info reveal reveal-delay-1">
+        <div class="contact-item">
+          <div class="contact-item-icon">🌐</div>
+          <div>
+            <h4>Community</h4>
+            <p><a href="https://aireadyeducator.com" target="_blank" rel="noopener">aireadyeducator.com</a></p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">✉️</div>
+          <div>
+            <h4>Email</h4>
+            <p><a href="mailto:Sailsky1@gmail.com">Sailsky1@gmail.com</a></p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">📍</div>
+          <div>
+            <h4>Location</h4>
+            <p>North Carolina, USA</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">🤝</div>
+          <div>
+            <h4>Open to</h4>
+            <p>Collaborations · Speaking · PD workshops</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-2">
+        <div class="contact-form">
+          <h3>Send a message</h3>
+          <form id="contactForm" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" placeholder="Jane Smith" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" placeholder="jane@school.edu" required>
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" placeholder="Collaboration / WildCatalyze / Community…">
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" placeholder="Tell me what's on your mind…" required></textarea>
+            </div>
+            <button type="submit" class="form-submit" id="submitBtn">Send Message →</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-logo">Sail <span>•</span></div>
+  <p>© 2026 Sail · Educator, Innovator, Builder</p>
+  <div class="footer-links">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#teaching">Teaching</a>
+    <a href="#projects">Projects</a>
+    <a href="https://aireadyeducator.com" target="_blank" rel="noopener">AI-Ready Educator ↗</a>
+  </div>
+</footer>
+
+<script>
+/* ── NAV scroll ── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+/* ── Scroll reveal ── */
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+revealEls.forEach(el => observer.observe(el));
+
+/* ── Skill bars animate on scroll ── */
+const fills = document.querySelectorAll('.skill-fill');
+const fillObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const el = e.target;
+      el.style.width = (parseFloat(el.style.getPropertyValue('--w') || 0.8) * 100) + '%';
+      el.classList.add('animated');
+      fillObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.3 });
+
+// Override skill fill animation approach
+document.querySelectorAll('.skill-fill').forEach(fill => {
+  const w = fill.style.getPropertyValue('--w') || '0.8';
+  fill.style.width = '0%';
+  fill.style.transition = 'width 1.1s cubic-bezier(0.4,0,0.2,1)';
+  fill.style.transform = 'none';
+  fillObserver.observe(fill);
+});
+fillObserver.disconnect();
+
+// Re-observe with width approach
+const skillObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const el = e.target;
+      const w = el.getAttribute('style').match(/--w:([\d.]+)/)?.[1] || '0.8';
+      setTimeout(() => { el.style.width = (parseFloat(w) * 100) + '%'; }, 150);
+      skillObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.2 });
+document.querySelectorAll('.skill-fill').forEach(fill => {
+  fill.style.width = '0%';
+  fill.style.transition = 'width 1.1s cubic-bezier(0.4,0,0.2,1)';
+  fill.style.transform = 'none';
+  skillObserver.observe(fill);
+});
+
+/* ── Contact form ── */
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  const name    = document.getElementById('name').value;
+  const email   = document.getElementById('email').value;
+  const subject = document.getElementById('subject').value;
+  const message = document.getElementById('message').value;
+  const mailto  = `mailto:Sailsky1@gmail.com?subject=${encodeURIComponent(subject || 'Message from ' + name)}&body=${encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message)}`;
+  window.location.href = mailto;
+  btn.textContent = 'Message sent! ✓';
+  btn.style.background = '#1a7a4a';
+  setTimeout(() => { btn.textContent = 'Send Message →'; btn.style.background = ''; }, 3000);
+}
+</script>
+</body>
+</html>
